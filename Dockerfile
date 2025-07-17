@@ -2,6 +2,8 @@ FROM python:3.13.4-slim
 
 # Install system dependencies required for pyzbar and opencv
 RUN apt-get update && apt-get install -y \
+    build-essential \
+    g++ \
     libzbar0 \
     libzbar-dev \
     libgl1-mesa-glx \
