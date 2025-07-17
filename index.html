@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fooderator - Food Scanner & Translator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍔 Fooderator</h1>
+            <p>Scan & Translate Food Products</p>
+        </header>
+
+        <div class="language-selector">
+            <label for="language">Translate to:</label>
+            <select id="language">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="zh-cn">中文</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="ar">العربية</option>
+                <option value="hi">हिन्दी</option>
+                <option value="ru">Русский</option>
+            </select>
+        </div>
+
+        <div class="scan-section">
+            <div class="scan-options">
+                <button id="cameraBtn" class="primary-btn">
+                    📷 Use Camera
+                </button>
+                <label for="fileInput" class="primary-btn">
+                    📁 Upload Image
+                </label>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            </div>
+            
+            <div class="manual-input">
+                <p>Or enter barcode manually:</p>
+                <div class="barcode-input-group">
+                    <input type="text" id="barcodeInput" placeholder="Enter barcode number">
+                    <button id="searchBtn">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="cameraModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="camera-container">
+                    <video id="video" autoplay></video>
+                    <div class="scan-overlay">
+                        <div class="scan-area"></div>
+                        <p class="scan-instruction">Position barcode within the frame</p>
+                    </div>
+                </div>
+                <canvas id="canvas" style="display: none;"></canvas>
+                <button id="captureBtn" class="primary-btn">📸 Capture</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Processing...</p>
+        </div>
+
+        <div id="results" class="results" style="display: none;">
+            <div class="product-header">
+                <img id="productImage" alt="Product">
+                <div class="product-info">
+                    <h2 id="productName"></h2>
+                    <p id="productBrand"></p>
+                    <p id="barcode"></p>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="nutrition">Nutrition</button>
+                <button class="tab-btn" data-tab="ingredients">Ingredients</button>
+            </div>
+
+            <div id="nutrition" class="tab-content active">
+                <h3>Nutrition Facts (per 100g)</h3>
+                <div class="nutrition-grid"></div>
+            </div>
+
+            <div id="ingredients" class="tab-content">
+                <h3>Ingredients</h3>
+                <p id="ingredientsList"></p>
+            </div>
+
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            <p id="errorMessage"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
