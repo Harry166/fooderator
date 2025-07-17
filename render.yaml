@@ -2,6 +2,8 @@ services:
   - type: web
     name: fooderator
     env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     envVars:
       - key: USDA_API_KEY
         sync: false
